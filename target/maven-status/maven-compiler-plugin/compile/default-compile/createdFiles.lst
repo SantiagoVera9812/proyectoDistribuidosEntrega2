@@ -1,0 +1,6 @@
+org/example/SistemaPubSus.class
+org/example/GuardarMensajeServiceImpl.class
+org/example/Monitor.class
+org/example/Sensor.class
+org/example/RmiServer.class
+org/example/GuardarMensajeService.class
