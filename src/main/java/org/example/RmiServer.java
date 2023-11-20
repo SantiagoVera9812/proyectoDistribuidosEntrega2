@@ -8,9 +8,7 @@ public class RmiServer {
         try {
             GuardarMensajeService guardarMensajeService = new GuardarMensajeServiceImpl();
 
-            
             LocateRegistry.createRegistry(1237);
-
             
             Naming.rebind("rmi://localhost:1237/GuardarMensajeService", guardarMensajeService);
 
