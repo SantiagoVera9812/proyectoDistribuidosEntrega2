@@ -9,7 +9,7 @@ public class SistemaPubSus {
              ZMQ.Socket backend = context.socket(ZMQ.PUB)) {
 
             frontend.bind("tcp://*:5555");  // Espera conexiones de los publicadores
-            backend.bind("tcp://*:5556");   // Espera conexiones de los suscriptores
+            backend.bind("tcp://*:5553");   // Espera conexiones de los suscriptores
 
             // Suscribirse a todos los mensajes de los publicadores
             frontend.subscribe("".getBytes());
@@ -33,11 +33,7 @@ public class SistemaPubSus {
                     }
                 } else {
                     System.out.println("El mensaje no contiene nada");
-                    
                 }
-                
-                
-
             }
         }
     }

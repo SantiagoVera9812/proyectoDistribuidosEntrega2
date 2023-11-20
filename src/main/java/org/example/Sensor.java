@@ -35,6 +35,9 @@ public class Sensor {
             System.exit(1);
         }
 
+        System.out.println("Correcta: " + probabilidadCorrecto + ". Fuera: " + probabilidadFueraDeRango + ". Invalida: " + probabilidadInvalido );
+
+
         try (ZMQ.Context context = ZMQ.context(1);
              ZMQ.Socket publisher = context.socket(ZMQ.PUB)) {
             publisher.connect("tcp://localhost:5555"); // Se conecta al broker
@@ -67,16 +70,22 @@ public class Sensor {
 
     public static String generarValorDentroDelRango() {
         
-        return String.valueOf(new Random().nextInt(101)); 
+        return String.valueOf(new Random().nextInt(22) + 68);
     }
 
     public static String generarValorFueraDelRango() {
-        
-        return String.valueOf(new Random().nextInt(200) + 101); // Valores fuera del rango
+        Random random = new Random();
+        int numeroAleatorio;
+        if (random.nextBoolean()) {
+            numeroAleatorio = random.nextInt(68);
+        } else {
+            numeroAleatorio = random.nextInt(Integer.MAX_VALUE - 89) + 90;
+        }
+        return String.valueOf(numeroAleatorio);
     }
 
     public static String generarValorInvalido() {
         
-        return String.valueOf(-1);
+        return String.valueOf(new Random().nextInt()*-1);
     }
 }
