@@ -4,7 +4,7 @@ import java.rmi.Naming;
 import org.zeromq.ZMQ;
 
 public class Monitor {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         if (args.length != 1) {
             System.out.println("Uso incorrecto. Debes proporcionar el tipo de sensor que vas a monitorear");
             System.exit(1);
@@ -13,7 +13,8 @@ public class Monitor {
         try (ZMQ.Context context = ZMQ.context(1);
              ZMQ.Socket subscriber = context.socket(ZMQ.SUB);
              ZMQ.Socket publisher = context.socket(ZMQ.PUB);
-             ZMQ.Socket registroSocket = context.socket(ZMQ.REQ)) {
+             ZMQ.Socket registroSocket = context.socket(ZMQ.REQ);
+             ZMQ.Socket reqSocket = context.socket(ZMQ.REQ)) {
             subscriber.connect("tcp://localhost:5553"); // Se conecta al broker
             subscriber.subscribe(tipoSensor.getBytes()); 
             // Suscribe a mensajes con la etiqueta "topicA"
@@ -24,6 +25,7 @@ public class Monitor {
             // Envía un mensaje de registro al servidor de manejo de fallos
             registroSocket.send("Registro de Monitor " + tipoSensor);
             while (true) {
+                try{
                 String mensaje = new String(subscriber.recv());
                 System.out.println("Mensaje recibido: " + mensaje);
                 String [] splittedMessage = mensaje.split(" ");
@@ -50,6 +52,21 @@ public class Monitor {
                         break;
                 }
                 callRmiGuardarMensaje("archivo.txt", mensaje);
+                /* reqSocket.connect("tcp://localhost:5559");
+                String solicitud = reqSocket.recvStr();
+                System.out.println("Solicitud del servidor: " + solicitud);
+                
+                // Realiza alguna lógica en respuesta a la solicitud (ejemplo)
+                String respuestaSolicitud = "Respuesta a la solicitud";
+                reqSocket.send(respuestaSolicitud);
+                */
+                Thread.sleep(1000);
+                
+            }catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             }
         }
     }
