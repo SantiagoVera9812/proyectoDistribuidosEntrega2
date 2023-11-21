@@ -1,6 +1,10 @@
-org/example/SistemaPubSus.class
 org/example/GuardarMensajeServiceImpl.class
-org/example/Monitor.class
 org/example/Sensor.class
+org/example/ReplicarArchivoServiceImpl.class
+org/example/SistemaCalidad.class
 org/example/RmiServer.class
+org/example/ReplicarArchivoService.class
+org/example/SistemaPubSus.class
+org/example/ServidorManejoDeFallos.class
+org/example/Monitor.class
 org/example/GuardarMensajeService.class

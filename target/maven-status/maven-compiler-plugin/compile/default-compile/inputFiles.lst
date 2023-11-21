@@ -1,6 +1,10 @@
-/home/santiagovera/TallerZeroMq/tallerZeroMq/src/main/java/org/example/RmiServer.java
-/home/santiagovera/TallerZeroMq/tallerZeroMq/src/main/java/org/example/GuardarMensajeService.java
-/home/santiagovera/TallerZeroMq/tallerZeroMq/src/main/java/org/example/Sensor.java
-/home/santiagovera/TallerZeroMq/tallerZeroMq/src/main/java/org/example/GuardarMensajeServiceImpl.java
-/home/santiagovera/TallerZeroMq/tallerZeroMq/src/main/java/org/example/SistemaPubSus.java
-/home/santiagovera/TallerZeroMq/tallerZeroMq/src/main/java/org/example/Monitor.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/GuardarMensajeService.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/Sensor.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/ReplicarArchivoServiceImpl.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/ReplicarArchivoService.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/SistemaCalidad.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/RmiServer.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/GuardarMensajeServiceImpl.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/Monitor.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/SistemaPubSus.java
+/home/santiagovera/Descargas/proyectoDistribuidosEntrega2/src/main/java/org/example/ServidorManejoDeFallos.java

@@ -1,6 +1,5 @@
 package org.example;
 import java.rmi.Naming;
-import java.util.Random;
 
 import org.zeromq.ZMQ;
 
@@ -13,14 +12,22 @@ public class Monitor {
         String tipoSensor = args[0];
         try (ZMQ.Context context = ZMQ.context(1);
              ZMQ.Socket subscriber = context.socket(ZMQ.SUB);
-             ZMQ.Socket publisher = context.socket(ZMQ.PUB)) {
-            subscriber.connect("tcp://localhost:5556"); // Se conecta al broker
-            subscriber.subscribe(tipoSensor.getBytes()); // Suscribe a mensajes con la etiqueta "topicA"
+             ZMQ.Socket publisher = context.socket(ZMQ.PUB);
+             ZMQ.Socket registroSocket = context.socket(ZMQ.REQ)) {
+            subscriber.connect("tcp://localhost:5553"); // Se conecta al broker
+            subscriber.subscribe(tipoSensor.getBytes()); 
+            // Suscribe a mensajes con la etiqueta "topicA"
+
+            // Conexión al servidor de manejo de fallos
+            registroSocket.connect("tcp://localhost:5559");
+
+            // Envía un mensaje de registro al servidor de manejo de fallos
+            registroSocket.send("Registro de Monitor " + tipoSensor);
             while (true) {
                 String mensaje = new String(subscriber.recv());
                 System.out.println("Mensaje recibido: " + mensaje);
                 String [] splittedMessage = mensaje.split(" ");
-                publisher.connect("tcp://10.43.101.128:5557"); // Se conecta al sistema calidad
+                publisher.connect("tcp://localhost:5557"); // Se conecta al sistema calidad
                 double medicion = Double.parseDouble(splittedMessage[1]);
                 switch(tipoSensor){
                     case "temperatura":
